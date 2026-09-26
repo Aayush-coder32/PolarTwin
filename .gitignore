@@ -12,6 +12,7 @@ __pycache__/
 # Node dependencies and generated builds
 node_modules/
 dist/
+frontend/dist/
 
 # Local MongoDB data
 mongo-data/

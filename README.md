@@ -1,57 +1,123 @@
 # PolarTwin
 
-**A Digital Twin for Smarter Antarctic Operations.** A responsive mission control prototype for the fictional operational monitoring of Maitri and Bharati stations.
+PolarTwin is a responsive demonstration interface for exploring simulated operations at two fictional Antarctic research stations, Maitri and Bharati. It is a prototype and is not connected to NCPOR, MoES, real stations, sensors, satellites or emergency services. Do not use its sample readings or recommendations for operational decisions.
 
-> **Demonstration only.** All telemetry, station conditions, alerts, predictions and locations displayed in this prototype are illustrative simulated data. The prototype has no connection to NCPOR, MoES, Antarctic station systems, emergency services, satellites or physical IoT devices. It must not be used to make operational decisions.
+## Project layout
 
-## Run the frontend
+```text
+.
+├── backend/                 # FastAPI API and MongoDB integration
+│   ├── app/
+│   │   ├── __init__.py
+│   │   └── main.py
+│   └── requirements.txt
+├── frontend/                # Vite + React application
+│   ├── src/
+│   ├── index.html
+│   ├── package.json
+│   └── package-lock.json
+├── .env                     # Local secrets; ignored by Git
+├── .gitignore
+├── docker-compose.yml        # Optional local MongoDB
+└── README.md
+```
+
+## Frontend: local development
 
 Requires Node.js 20.19+ or 22.12+.
 
 ```sh
-npm install
+cd frontend
+npm ci
 npm run dev
 ```
 
-Open the Vite URL in a browser. Choose **Explore the digital twin** to create an account or **Sign in** to use an existing account. Account records are stored in MongoDB; passwords are hashed with scrypt and the API issues expiring signed bearer tokens.
+Open the Vite URL printed in the terminal. By default, the frontend expects the API at `http://127.0.0.1:8000`. To point it to another API, set `VITE_API_BASE_URL` before building or running Vite.
 
-## Run the demonstration API
+Build the static frontend with:
 
-Start MongoDB locally (Docker):
+```sh
+npm run build
+```
+
+The generated files are placed in `frontend/dist/`.
+
+## Backend: local development
+
+Requires Python 3.10+.
+
+From the repository root, create and activate a virtual environment, then install the API requirements:
+
+```sh
+python -m venv .venv
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+# macOS/Linux: source .venv/bin/activate
+pip install -r backend/requirements.txt
+```
+
+Set the backend environment variables in your shell or hosting dashboard:
+
+| Variable | Purpose | Local default |
+|---|---|---|
+| `MONGODB_URI` | MongoDB connection string | `mongodb://localhost:27017` |
+| `MONGODB_DATABASE` | Database name | `polartwin_demo` |
+| `POLARTWIN_AUTH_SECRET` | HMAC signing key for account tokens | Temporary random value if omitted |
+| `POLARTWIN_CORS_ORIGINS` | Comma-separated allowed frontend origins | `http://localhost:5173,http://127.0.0.1:5173` |
+
+The application reads environment variables directly; it does not load `.env` automatically. For local PowerShell development, configure them in the shell before starting the API. Never commit `.env` or put secrets in frontend variables.
+
+Start the API from the repository root:
+
+```sh
+uvicorn backend.app.main:app --reload
+```
+
+Interactive API docs are at `http://127.0.0.1:8000/docs`; health status is at `http://127.0.0.1:8000/api/health`. The WebSocket endpoint is `ws://127.0.0.1:8000/ws/telemetry`.
+
+### Optional local MongoDB with Docker
+
+From the repository root:
 
 ```sh
 docker compose up -d mongodb
 ```
 
-Or use an existing MongoDB instance. Configure `MONGODB_URI` and optionally `MONGODB_DATABASE` in the environment. The local `.env` file can hold these values; keep it private and never commit it. Defaults are `mongodb://localhost:27017` and `polartwin_demo`.
+The compose file stores MongoDB data in a named Docker volume. Stop it with `docker compose down`. `docker compose down -v` removes the volume and its data.
 
-Python 3.10+:
+## Deployment
 
-```sh
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
-pip install -r backend/requirements.txt
-uvicorn backend.app.main:app --reload
-```
+Deploy the frontend and backend as separate services, and use MongoDB Atlas for the database.
 
-For local development, the API generates a temporary signing secret automatically. Set `POLARTWIN_AUTH_SECRET` to a persistent random value before starting the API if sessions must remain valid across API restarts; production deployments must provide and securely manage this secret.
+### Backend on Render
 
-API documentation is available at `http://127.0.0.1:8000/docs`. WebSocket telemetry is at `ws://127.0.0.1:8000/ws/telemetry`. The WebSocket emits clearly labeled simulated readings every four seconds. Set `POLARTWIN_CORS_ORIGINS` to a comma-separated allowlist when serving the API from another local origin.
+Connect this repository as a Render Web Service and configure:
 
-The API creates MongoDB collections and indexes for stations, equipment, inventory, alerts, telemetry and maintenance tickets, and seeds the fictional station/system records on startup. The `/api/health` endpoint reports whether MongoDB is reachable. Stop local MongoDB with `docker compose down`; persistent demo data remains in its named Docker volume. Use `docker compose down -v` only if you intend to remove that volume and its demo records.
+- **Root Directory:** `backend`
+- **Build Command:** `pip install -r requirements.txt`
+- **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 
-## Demonstration flow
+Set these environment variables in Render (do not commit values to Git):
 
-1. Open mission control and switch between Maitri and Bharati from the station selector.
-2. Explore the interactive site schematic and click infrastructure zones.
-3. Use **Trigger demo anomaly** in equipment or alerts to create a simulated high-priority alert.
-4. Review predictive maintenance and logistics forecasts.
-5. Acknowledge an alert, compare both stations, open the emergency operations view, and ask PolarAI about the demo data.
-6. Download a daily station summary. The export explicitly marks its contents as demonstration data.
+- `MONGODB_URI` — MongoDB Atlas URI with a rotated database password.
+- `MONGODB_DATABASE` — `polartwin_demo`.
+- `POLARTWIN_AUTH_SECRET` — long, random secret; keep it stable between deploys.
+- `POLARTWIN_CORS_ORIGINS` — exact deployed frontend origin, such as `https://your-project.vercel.app`.
 
-## Prototype scope
+Add the Render service's network access in MongoDB Atlas as required by your cluster's network policy. After deployment, check `https://<render-service>.onrender.com/api/health`; MongoDB should report `ok`.
 
-The frontend uses React, Vite, Recharts, Framer Motion and Lucide icons. A Python FastAPI service supplies typed demonstration endpoints for stations, health, environment, energy, equipment, inventory, alerts, analytics and predictions, plus a WebSocket simulator. The interface intentionally labels telemetry and AI recommendations as simulated. Emergency mode is only an in-app demonstration view.
+### Frontend on Vercel
 
-Redis, MQTT ingestion, actual sensor provisioning and trained AI models are **not implemented** by this prototype. Account registration and login use MongoDB-backed accounts, scrypt password hashes and expiring HMAC-signed bearer tokens. This prototype auth is not a substitute for production identity controls; production deployment also requires role authorization, email verification, password reset, audit logging, rate limiting, secret management, operational validation and formal security review.
+Import the repository as a Vercel project and configure:
+
+- **Root Directory:** `frontend`
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- **Environment Variable:** `VITE_API_BASE_URL` set to the Render service origin, such as `https://your-api.onrender.com`.
+
+After Vercel deploys, copy its exact site origin into Render's `POLARTWIN_CORS_ORIGINS` and redeploy the backend if needed. The frontend sends login and registration requests to the backend. Other dashboard views primarily use local simulated demo data.
+
+## Prototype capabilities and limitations
+
+The frontend uses React, Vite, Recharts, Framer Motion and Lucide. The FastAPI service exposes demonstration endpoints for station status, environment, energy, equipment, inventory, alerts, analytics, predictions, accounts and simulated WebSocket telemetry. MongoDB stores demo station records, telemetry and registered accounts. Passwords use scrypt hashes; account tokens are HMAC-signed and expire after seven days.
+
+This prototype does not implement real sensor ingestion, operational integrations, role authorization, email verification, password reset, rate limiting or production identity controls. Validate and secure it before using it beyond a demonstration.
