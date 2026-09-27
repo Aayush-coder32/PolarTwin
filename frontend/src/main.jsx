@@ -59,12 +59,12 @@ function App(){
 
 function LandingPage({onExplore,onLogin,onLive,showLogin,authMode,authBusy,authError,onModeChange,onClose,onLoginSubmit}) {
  const gallery=[
-  {url:'https://www.antarctica.gov.au/site/assets/files/48844/rs24868_mg_0018.600x400.jpg',alt:'Antarctic research station on a snow plain',source:'Australian Antarctic Program'},
-  {url:'https://www.antarctica.gov.au/site/assets/files/48848/5fb4.1200x630.jpg',alt:'Raised station buildings designed for polar conditions',source:'Australian Antarctic Program'},
-  {url:'https://blogs.esa.int/concordia/files/2018/08/Antarctic-Caravan_Giorgioni_PNRA.jpg',alt:'Tracked field vehicle crossing Antarctic ice',source:'European Space Agency'},
-  {url:'https://upload.wikimedia.org/wikipedia/commons/1/15/Micro_Met_Tower%2C_Plateau_Station_%28Antarctica%29.jpg',alt:'Automatic weather station on Antarctic ice',source:'Wikimedia Commons Â· CC0'},
-  {url:'https://www.antarctica.gov.au/site/assets/files/46870/solar_panels_casey_station.jpg',alt:'Solar panels supporting a polar research station',source:'Australian Antarctic Program'}
- ];
+  {url:'/images/antarctic-base.svg',alt:'Illustration of an Antarctic research station on a snow plain',source:'PolarTwin illustrative artwork'},
+  {url:'/images/antarctic-base.svg',alt:'Illustration of raised station buildings designed for polar conditions',source:'PolarTwin illustrative artwork'},
+  {url:'/images/polar-traverse.svg',alt:'Illustration of a tracked field vehicle crossing Antarctic ice',source:'PolarTwin illustrative artwork'},
+  {url:'/images/weather-station.svg',alt:'Illustration of an automatic weather station on Antarctic ice',source:'PolarTwin illustrative artwork'},
+  {url:'/images/solar-station.svg',alt:'Illustration of solar panels supporting a polar research station',source:'PolarTwin illustrative artwork'}
+ ];;
  return <div className="landing">
   <nav className="landing-nav"><a className="landing-brand" href="#home"><span className="brand-mark"><Snowflake size={21}/></span><span>POLAR<span>TWIN</span></span></a><div className="landing-nav-links"><a href="#platform">PLATFORM</a><a href="#capabilities">CAPABILITIES</a><a href="#stations">FIELD PHOTOS</a><a href="#about">ABOUT</a></div><div className="landing-nav-right"><span className="landing-nav-status"><span className="live-dot"/>DEMO ENVIRONMENT</span><button className="outline-btn" onClick={onLogin}>Sign in <ArrowRight size={14}/></button></div></nav>
   <section className="hero" id="home"><div className="hero-bg-grid"/><div className="hero-copy"><div className="eyebrow"><span/> NATIONAL CENTRE FOR POLAR AND OCEAN RESEARCH <span className="eyebrow-line"/></div><h1>Digitally managing<br/>Indiaâ€™s <span>Antarctic future.</span></h1><p className="hero-description">A unified operational picture of Maitri and Bharati. Monitor critical infrastructure, anticipate equipment risk and make more informed decisions from anywhere.</p><div className="hero-actions"><button className="primary-btn" onClick={onExplore}>Explore the digital twin <ArrowRight size={16}/></button><button className="text-btn" onClick={onLive}><span className="outline-play">â–¶</span> View mission control</button></div><div className="hero-meta"><span><span className="live-dot"/>TWO STATIONS</span><span/><span>QUEEN MAUD LAND Â· LARSER MANN HILLS</span></div><div className="hero-disclaimer">CONCEPT PLATFORM Â· DEMONSTRATION DATA Â· NO LIVE STATION CONNECTION</div></div>
