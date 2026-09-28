@@ -184,3 +184,9 @@ body{background:var(--bg);color:#20333e}
 .module-image img{object-position:center 48%}
 .module-image-caption{left:13px;bottom:9px}
 @media(max-width:600px){.module-images{gap:7px;margin:-5px 0 13px}.module-image{height:76px}.module-image-caption{left:8px;bottom:7px}}
+
+/* Slightly stronger type throughout the signed-in mission control dashboard. */
+.shell{font-weight:500}
+.shell .nav-item,.shell .breadcrumb,.shell .section-marker,.shell .station-picker-copy>span,.shell .nav-label{font-weight:600}
+.shell .panel-sub,.shell .page-heading p,.shell .stat-bottom,.shell .module-image-caption small{font-weight:500}
+.shell .panel-head h3,.shell .page-heading h1,.shell .stat-value,.shell .identity-copy strong{font-weight:700}
