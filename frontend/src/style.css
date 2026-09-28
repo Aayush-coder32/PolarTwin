@@ -177,3 +177,10 @@ body{background:var(--bg);color:#20333e}
 .cap-card-copy>p{margin:9px 0 0;color:#607680;font-size:11px;line-height:1.65}
 @media(max-width:900px){.cap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.cap-grid{grid-template-columns:1fr;gap:12px}.cap-card-photo{height:165px}.cap-card-copy{padding:17px 15px 16px}}
+
+/* Local station artwork appears at the top of each authenticated dashboard module. */
+.module-images{gap:10px;margin:-8px 0 17px}
+.module-image{height:104px;border-radius:8px;box-shadow:0 4px 13px #17374610}
+.module-image img{object-position:center 48%}
+.module-image-caption{left:13px;bottom:9px}
+@media(max-width:600px){.module-images{gap:7px;margin:-5px 0 13px}.module-image{height:76px}.module-image-caption{left:8px;bottom:7px}}
