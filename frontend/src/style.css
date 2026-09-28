@@ -206,3 +206,10 @@ body{background:var(--bg);color:#20333e}
 .station-emergency-tabs{border-color:#dce6eb}.station-emergency-tabs button{color:#536974}.station-emergency-tabs button.selected{color:#bd5149;border-color:#d5766e}
 .emergency-stats{background:#fff;border-color:#dce6eb}.emergency-stat{border-color:#dce6eb}.emergency-stat>small{color:#536974}.emergency-stat>strong{color:#111820}.emergency-stat>strong i,.secondary-stat{color:#61737c!important}.emergency-stat .meter{background:#e8eef1}
 .response-row,.timeline-event{border-color:#dce6eb;color:#26363c}.response-row strong,.timeline-event strong{color:#17252b}.response-row>span:nth-child(3),.timeline-event small{color:#5a6d76}.timeline-event time{color:#966044}
+.landing .hero-copy .eyebrow,.landing .hero-description,.landing .hero-meta,.landing .hero-disclaimer,.landing .hero-bottom-line{color:#111820;font-weight:600}
+.landing .hero h1,.landing .hero h1 span{color:#111820;font-weight:800}
+.landing .strip-heading h2,.landing .strip-heading h2 span,.landing-strip>p{color:#111820;font-weight:600}
+.landing .strip-stats strong{color:#111820;font-weight:800}.landing .strip-stats>div>span{color:#111820;font-weight:600}
+.landing .section-marker{color:#111820;font-weight:700}
+.landing .cap-grid strong,.landing .cap-grid p,.landing .gallery-intro h2,.landing .gallery-intro p,.landing .about-copy h2,.landing .about-copy p{color:#111820;font-weight:600}
+.landing .cap-card-copy>strong,.landing .gallery-intro h2,.landing .about-copy h2{font-weight:800}
