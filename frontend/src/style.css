@@ -190,3 +190,7 @@ body{background:var(--bg);color:#20333e}
 .shell .nav-item,.shell .breadcrumb,.shell .section-marker,.shell .station-picker-copy>span,.shell .nav-label{font-weight:600}
 .shell .panel-sub,.shell .page-heading p,.shell .stat-bottom,.shell .module-image-caption small{font-weight:500}
 .shell .panel-head h3,.shell .page-heading h1,.shell .stat-value,.shell .identity-copy strong{font-weight:700}
+.shell{color:#111820}
+.shell .nav-item,.shell .breadcrumb,.shell .top-status,.shell .sync strong,.shell .identity-copy strong,.shell .station-picker-copy strong{color:#111820}
+.shell .content p,.shell .content .panel-sub,.shell .content .stat-bottom,.shell .content .health-row,.shell .content .chart-legend,.shell .content .chart-foot,.shell .content .context-row,.shell .content .forecast-meta,.shell .content .alert-card-body>p,.shell .content .report-section p,.shell .content .report-side p{color:#1c272d!important}
+.shell .section-marker,.shell .nav-label,.shell .station-picker-copy>span{color:#35434a}
