@@ -199,3 +199,10 @@ body{background:var(--bg);color:#20333e}
 .map-land,.map-lines{z-index:1}.map-building,.map-coordinate,.map-compass,.map-scale,.map-footnote{z-index:2}
 .shell .stats-grid,.shell .overview-grid,.shell .lower-grid,.shell .inventory-grid,.shell .comparison-grid,.shell .environment-stats{gap:15px}
 @media(max-width:760px){.shell .stats-grid,.shell .overview-grid,.shell .lower-grid,.shell .inventory-grid,.shell .comparison-grid,.shell .environment-stats{gap:11px}}
+.emergency-page{background:#f4f8f9;border-color:#dce6eb;color:#111820}
+.emergency-title h1{color:#111820}.emergency-title p{color:#526671}
+.emergency-pulse{background:#fff0ee;border-color:#efc9c5;color:#c85b52}
+.emergency-note{background:#fff8eb;border-color:#ead8b7;color:#765621}
+.station-emergency-tabs{border-color:#dce6eb}.station-emergency-tabs button{color:#536974}.station-emergency-tabs button.selected{color:#bd5149;border-color:#d5766e}
+.emergency-stats{background:#fff;border-color:#dce6eb}.emergency-stat{border-color:#dce6eb}.emergency-stat>small{color:#536974}.emergency-stat>strong{color:#111820}.emergency-stat>strong i,.secondary-stat{color:#61737c!important}.emergency-stat .meter{background:#e8eef1}
+.response-row,.timeline-event{border-color:#dce6eb;color:#26363c}.response-row strong,.timeline-event strong{color:#17252b}.response-row>span:nth-child(3),.timeline-event small{color:#5a6d76}.timeline-event time{color:#966044}
