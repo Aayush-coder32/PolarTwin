@@ -161,3 +161,19 @@ body{background:var(--bg);color:#20333e}
 .footer-brand-block>p,.footer-link-group>p{color:#b2c2c8}.footer-link-group>strong{color:#8ea4ad}.footer-link-group>a{color:#d0dce0}.footer-link-group>a:hover{color:#88dce5}
 .footer-demo-badge{background:#102820;border-color:#285442;color:#9ce0c4}.footer-bottom{border-color:#20343e;color:#91a5ad}
 @media(max-width:760px){.landing-nav-links.mobile-open{display:flex;flex-direction:column}.landing-nav-links a{color:#d1dfe3}}
+
+/* Image-led capability cards using illustrations shipped in public/assets. */
+.cap-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:22px}
+.cap-card{min-width:0;overflow:hidden;border:1px solid #d5e2e6;border-radius:11px;background:#fff;box-shadow:0 5px 18px #183b470c;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.cap-card:hover{transform:translateY(-4px);border-color:#9dcbd1;box-shadow:0 15px 30px #183b4718}
+.cap-card-photo{height:142px;position:relative;overflow:hidden;background:#dcebee}
+.cap-card-photo:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(180deg,transparent,#10293273)}
+.cap-card-photo img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s ease}
+.cap-card:hover .cap-card-photo img{transform:scale(1.045)}
+.cap-photo-index{position:absolute;z-index:1;top:11px;right:11px;width:29px;height:29px;display:grid;place-items:center;border:1px solid #ffffff88;border-radius:50%;background:#10293275;color:white;font:9px 'DM Mono',monospace;backdrop-filter:blur(5px)}
+.cap-card-copy{position:relative;padding:18px 16px 17px}
+.cap-card-icon{position:absolute;top:-19px;right:15px;width:37px;height:37px;display:grid;place-items:center;border:1px solid #c4e1e5;border-radius:10px;background:#fff;color:#168da0;box-shadow:0 4px 12px #183b4712}
+.cap-card-copy>strong{display:block;padding-right:27px;color:#203943;font:700 14px Manrope,sans-serif;line-height:1.35}
+.cap-card-copy>p{margin:9px 0 0;color:#607680;font-size:11px;line-height:1.65}
+@media(max-width:900px){.cap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.cap-grid{grid-template-columns:1fr;gap:12px}.cap-card-photo{height:165px}.cap-card-copy{padding:17px 15px 16px}}
