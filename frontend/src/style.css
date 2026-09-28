@@ -213,3 +213,9 @@ body{background:var(--bg);color:#20333e}
 .landing .section-marker{color:#111820;font-weight:700}
 .landing .cap-grid strong,.landing .cap-grid p,.landing .gallery-intro h2,.landing .gallery-intro p,.landing .about-copy h2,.landing .about-copy p{color:#111820;font-weight:600}
 .landing .cap-card-copy>strong,.landing .gallery-intro h2,.landing .about-copy h2{font-weight:800}
+.hero{isolation:isolate;background:#eaf4f6}
+.hero:before{content:"";position:absolute;z-index:-1;inset:-4%;background-image:url("https://hdqwalls.com/wallpapers/mount-erebus-on-antarctica-sd.jpg"),url("/assets/antarctic-base.svg");background-position:center;background-size:cover;animation:antarctic-hero-drift 32s ease-in-out infinite alternate;will-change:transform}
+.hero:after{background:linear-gradient(90deg,#f5f9fafd 7%,#f5f9fae8 37%,#f5f9fa66 61%,#f5f9fa12 100%),linear-gradient(0deg,#eaf4f640,transparent 38%)}
+.hero-bg-grid{z-index:0}
+@keyframes antarctic-hero-drift{from{transform:scale(1.02) translate3d(-.5%,0,0)}to{transform:scale(1.1) translate3d(1.2%,-1%,0)}}
+@media(prefers-reduced-motion:reduce){.hero:before{animation:none;transform:scale(1.04)}}
